@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pl_PL" xmlsn:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:xmlsn="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Dodawanie zwierzęcia</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav mr-auto text-white">
+                <a href="/admin-panel/add-animal" class="nav-link nav-item active">Dodaj zwierzę</a>
+                <a href="/admin-panel/remove-animal" class="nav-link nav-item">Usuń zwierzę</a>
+                <a href="/admin-panel/add-barn" class="nav-link nav-item">Dodaj stodołę</a>
+                <a href="/admin-panel/remove-barn" class="nav-link nav-item">Usuń stodołę</a>
+                <a href="/admin-panel/five-oldest-animals" class="nav-link nav-item">5 najstarszych zwierząt</a>
+                <a href="/admin-panel/five-youngest-animals" class="nav-link nav-item">5 najmłodszych zwierząt</a>
+                <a href="/admin-panel/most-numbered-barn" class="nav-link nav-item">Stodoła z największą ilością zwierząt</a>
+                <a href="/admin-panel/most-numbered-animal" class="nav-link nav-item">Najliczniejsze zwierzę</a>
+                <a href="/admin-panel/all-vaccinated-animals" class="nav-link nav-item">Zaszczepione zwierzęta </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron jumbotron-fluid text-white text-center bg-info">
+    <div class="container">
+        <h4>Dodaj nowe zwierzę na farmie</h4>
+    </div>
+</div>
+
+<div class="container">
+
+    <div th:if="${noBarnInfo !=null}" class="col-6 text-center mx-auto">
+        <h4 th:text="${noBarnInfo}" class="text-danger text-center"></h4>
+        <a href="/admin-panel/add-barn">Dodaj stodołę</a>
+    </div>
+
+    <div class="row">
+        <form action="/admin-panel/add-animal" method="post" th:object="${addAnimalForm}" class="col-md-6 mx-auto">
+            <h3 th:if="${animalAddedInfo != null}" th:text="${animalAddedInfo}" class="col-12 text-center text-success"></h3>
+            <div class="form-group">
+                <label for="type">Typ zwierzęcia</label>
+                <!--<select id="type" th:field="*{type}" class="form-control">-->
+                <!--<option value="" disabled selected></option>-->
+                <!--<option th:each="animal : ${T(pl.annawyszomirskaszmyd.farmerspring.models.forms.AddAnimalForm.AnimalType).values()}"-->
+                <!--th:value="${animal}"-->
+                <!--th:text="${animal}">-->
+                <!--</option>-->
+                <!--</select>-->
+                <input type="text" id="type" th:field="*{type}" class="form-control">
+                <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="form-text text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Wiek</label><br>
+                <input id="age" type="number" th:field="*{age}" class="form-control">
+                <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="form-text text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label for="vaccinated">Czy zwierzę jest szczepione?</label>
+                <!--<select id="vaccinated" th:field="*{isVaccinated}" class="form-control">-->
+                    <!--<option value="" disabled selected></option>-->
+                    <!--<option th:each="boolean: ${isVaccinatedOptions}"-->
+                            <!--th:value="${boolean}"-->
+                            <!--th:text="${boolean}">-->
+                    <!--</option>-->
+                <!--</select>-->
+                <input type="text" id="vaccinated" th:field="*{isVaccinated}" class="form-control">
+                <span th:errors="*{isVaccinated}" class="form-text text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="barn">Wybierz numer stodoły</label><br>
+                <input id="barn" type="number" th:field="*{barnId}" class="form-control">
+                <span th:if="${#fields.hasErrors('barnId')}" th:errors="*{barnId}" class="form-text text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-info">Dodaj zwierzę</button>
+            <button type="reset" class="btn btn-warning">Usuń dane z formularza</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

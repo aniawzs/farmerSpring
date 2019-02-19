@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlsn:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:xmlsn="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Rejestracja</title>
+</head>
+<body>
+
+<nav class="navbar bg-dark navbar-dark">
+    <div class="container">
+        <a href="/" class="navbar-brand">Start</a>
+    </div>
+</nav>
+
+<div class="jumbotron jumbotron-fluid bg-info text-white text-center">
+    <div class="container">
+        <h4>Zarejestruj się na farmie</h4>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <h5 class="col-12 text-danger my-2 text-center" th:if="${usernameError!= null}" th:text="${usernameError}"></h5>
+
+        <form action="/registration" method="post" th:object="${registrationForm}" class="col-md-6 mx-auto">
+            <div class="form-group">
+                <label for="name">Imię</label>
+                <input type="text" id="name" th:field="*{name}" class="form-control">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                      class="form-text text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="surname">Nazwisko</label>
+                <input type="text" id="surname" th:field="*{surname}" class="form-control">
+                <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"
+                      class="form-text text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Nick</label>
+                <input type="text" id="username" th:field="*{username}" class="form-control">
+                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                      class="form-text text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Hasło</label>
+                <input type="password" id="password" th:field="*{password}" class="form-control">
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                      class="form-text text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Powtórz hasło</label>
+                <input type="password" id="confirmPassword" th:field="*{confirmPassword}" class="form-control">
+                <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"
+                      class="form-text text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-info">Zarejestruj się</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

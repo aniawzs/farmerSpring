@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlsn:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:xmlsn="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Zmień nazwisko</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav mr-auto text-white">
+                <a href="/admin-panel/add-animal" class="nav-link nav-item">Dodaj zwierzę</a>
+                <a href="/admin-panel/remove-animal" class="nav-link nav-item">Usuń zwierzę</a>
+                <a href="/admin-panel/add-barn" class="nav-link nav-item">Dodaj stodołę</a>
+                <a href="/admin-panel/remove-barn" class="nav-link nav-item">Usuń stodołę</a>
+                <a href="/admin-panel/five-oldest-animals" class="nav-link nav-item">5 najstarszych zwierząt</a>
+                <a href="/admin-panel/five-youngest-animals" class="nav-link nav-item">5 najmłodszych zwierząt</a>
+                <a href="/admin-panel/most-numbered-barn" class="nav-link nav-item">Stodoła z największą ilością
+                    zwierząt</a>
+                <a href="/admin-panel/most-numbered-animal" class="nav-link nav-item">Najliczniejsze zwierzę</a>
+                <a href="/admin-panel/all-vaccinated-animals" class="nav-link nav-item">Zaszczepione
+                    zwierzęta </a>
+                <a href="/admin-panel/farmer-account" class="nav-link nav-item">Ustawienia konta</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-fluid bg-info text-center text-white">
+    <h4>Zmień nazwisko</h4>
+</div>
+<div class="container">
+    <form action="/admin-panel/farmer-account/update-surname" method="post" th:object="${updateSurnameForm}" class="col-6 mx-auto">
+        <h3 th:if="${surnameChangeSuccessInfo != null}" th:text="${surnameChangeSuccessInfo}" class="text-success text-center"></h3>
+        <div class="form-group">
+            <label for="surname">Podaj nowe nazwisko</label>
+            <input id="surname" th:field="*{surname}" class="form-control" type="text">
+            <span th:errors="*{surname}"></span>
+        </div>
+        <button class="btn btn-info">Zmień imię</button>
+    </form>
+</div>
+<div class="container">
+    <button class="btn btn-secondary my-5"><a href="/admin-panel/farmer-account/farmer-data" style="text-decoration: none; color:white">
+        Wróć do danych użytkownika</a></button>
+</div>
+</body>
+</html>

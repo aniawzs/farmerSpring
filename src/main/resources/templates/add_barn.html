@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlsn:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:xmlsn="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Dodawanie stodoły</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav mr-auto text-white">
+                <a href="/admin-panel/add-animal" class="nav-link nav-item">Dodaj zwierzę</a>
+                <a href="/admin-panel/remove-animal" class="nav-link nav-item">Usuń zwierzę</a>
+                <a href="/admin-panel/add-barn" class="nav-link nav-item active">Dodaj stodołę</a>
+                <a href="/admin-panel/remove-barn" class="nav-link nav-item">Usuń stodołę</a>
+                <a href="/admin-panel/five-oldest-animals" class="nav-link nav-item">5 najstarszych zwierząt</a>
+                <a href="/admin-panel/five-youngest-animals" class="nav-link nav-item">5 najmłodszych zwierząt</a>
+                <a href="/admin-panel/most-numbered-barn" class="nav-link nav-item">Stodoła z największą ilością
+                    zwierząt</a>
+                <a href="/admin-panel/most-numbered-animal" class="nav-link nav-item">Najliczniejsze zwierzę</a>
+                <a href="/admin-panel/all-vaccinated-animals" class="nav-link nav-item">Zaszczepione zwierzęta </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron jumbotron-fluid bg-info text-white text-center">
+    <h4>Nowa stodoła</h4>
+</div>
+
+<div class="container">
+    <div clas="row">
+        <h3 th:if="${existByName} != null" th:text="${existByName}" class="text-danger text-center"></h3>
+        <h3 th:if="${barnAddedSuccessfully != null}" th:text="${barnAddedSuccessfully}"
+            class="text-success text-center"></h3>
+        <form action="/admin-panel/add-barn" method="post" th:object="${addBarnForm}" class="col-md-6 mx-auto">
+            <div class="form-group">
+                <label for="barn">Podaj nazwę stodoły</label>
+                <input type="text" id="barn" th:field="*{name}" class="form-control">
+                <span class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>
+            <button type="submit" class="btn btn-info">Dodaj stodołę</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

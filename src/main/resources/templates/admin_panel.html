@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlsn:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:xmlsn="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin panel</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav mr-auto text-white">
+                <a href="/admin-panel/add-animal" class="nav-link nav-item">Dodaj zwierzę</a>
+                <a href="/admin-panel/remove-animal" class="nav-link nav-item">Usuń zwierzę</a>
+                <a href="/admin-panel/add-barn" class="nav-link nav-item">Dodaj stodołę</a>
+                <a href="/admin-panel/remove-barn" class="nav-link nav-item">Usuń stodołę</a>
+                <a href="/admin-panel/five-oldest-animals" class="nav-link nav-item">5 najstarszych zwierząt</a>
+                <a href="/admin-panel/five-youngest-animals" class="nav-link nav-item">5 najmłodszych zwierząt</a>
+                <a href="/admin-panel/most-numbered-barn" class="nav-link nav-item">Stodoła z największą ilością zwierząt</a>
+                <a href="/admin-panel/most-numbered-animal" class="nav-link nav-item">Najliczniejsze zwierzę</a>
+                <a href="/admin-panel/all-vaccinated-animals" class="nav-link nav-item">Zaszczepione zwierzęta </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="col-12 text-center my-5">
+        <button class="btn btn-primary">Zobacz wszystkie zwierzęte na farmie</button>
+        <button class="btn btn-info">Zobacz wszystkie stodoły</button>
+        <button class="btn btn-success"><a href="/admin-panel/farmer-account" style="text-decoration: none; color:white">
+            Ustawienia profilu</a></button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+</body>
+</html>

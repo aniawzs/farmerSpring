@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlsn:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:xmlsn="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Usuwanie stodoły</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav mr-auto text-white">
+                <a href="/admin-panel/add-animal" class="nav-link nav-item">Dodaj zwierzę</a>
+                <a href="/admin-panel/remove-animal" class="nav-link nav-item">Usuń zwierzę</a>
+                <a href="/admin-panel/add-barn" class="nav-link nav-item">Dodaj stodołę</a>
+                <a href="/admin-panel/remove-barn" class="nav-link nav-item active">Usuń stodołę</a>
+                <a href="/admin-panel/five-oldest-animals" class="nav-link nav-item">5 najstarszych zwierząt</a>
+                <a href="/admin-panel/five-youngest-animals" class="nav-link nav-item">5 najmłodszych zwierząt</a>
+                <a href="/admin-panel/most-numbered-barn" class="nav-link nav-item">Stodoła z największą ilością
+                    zwierząt</a>
+                <a href="/admin-panel/most-numbered-animal" class="nav-link nav-item">Najliczniejsze zwierzę</a>
+                <a href="/admin-panel/all-vaccinated-animals" class="nav-link nav-item">Zaszczepione zwierzęta </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-fluid bg-info text-white text-center">
+    <div class="container">
+        <h4>Usuwanie stodoły</h4>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h3 class="col-12 text-success text-center" th:if="#{removeBarnSuccess != null}" th:text="${removeBarnSuccess}"></h3>
+
+        <form action="/admin-panel/remove-barn" method="post" th:object="${removeBarnForm}" class="col-md-6 mx-auto">
+            <div class="form-group">
+                <label for="barn">Podaj nazwę stodoły do usunięcia</label>
+                <input type="text" id="barn" th:field="*{name}" class="form-control">
+                <span class="form-text text-danger"  th:errors="*{name}"></span>
+            </div>
+            <button type="submit" class="btn btn-info">Usuń stodołę</button>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
