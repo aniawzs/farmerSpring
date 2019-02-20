@@ -17,6 +17,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarContent">
             <div class="navbar-nav mr-auto text-white">
+                <a href="/admin-panel" class="nav-link nav-item">Start</a>
                 <a href="/admin-panel/add-animal" class="nav-link nav-item">Dodaj zwierzę</a>
                 <a href="/admin-panel/remove-animal" class="nav-link nav-item">Usuń zwierzę</a>
                 <a href="/admin-panel/add-barn" class="nav-link nav-item">Dodaj stodołę</a>
@@ -26,6 +27,7 @@
                 <a href="/admin-panel/most-numbered-barn" class="nav-link nav-item">Stodoła z największą ilością zwierząt</a>
                 <a href="/admin-panel/most-numbered-animal" class="nav-link nav-item">Najliczniejsze zwierzę</a>
                 <a href="/admin-panel/all-vaccinated-animals" class="nav-link nav-item">Zaszczepione zwierzęta </a>
+                <a href="/admin-panel/farmer-account" class="nav-link nav-item">Ustawienia konta</a>
             </div>
         </div>
     </div>
@@ -33,8 +35,10 @@
 
 <div class="container">
     <div class="col-12 text-center my-5">
-        <button class="btn btn-primary">Zobacz wszystkie zwierzęte na farmie</button>
-        <button class="btn btn-info">Zobacz wszystkie stodoły</button>
+        <button class="btn btn-primary"><a href="/admin-panel/farmer-account/all-animals"
+                                           style="text-decoration: none; color:white">Zobacz wszystkie zwierzęte na farmie</a></button>
+        <button class="btn btn-info"><a href="/admin-panel/farmer-account/all-barns"
+                                        style="text-decoration: none; color:white">Zobacz wszystkie stodoły</a></button>
         <button class="btn btn-success"><a href="/admin-panel/farmer-account" style="text-decoration: none; color:white">
             Ustawienia profilu</a></button>
     </div>

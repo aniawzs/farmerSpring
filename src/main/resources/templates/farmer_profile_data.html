@@ -15,6 +15,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarContent">
             <div class="navbar-nav mr-auto text-white">
+                <a href="/admin-panel" class="nav-link nav-item">Start</a>
                 <a href="/admin-panel/add-animal" class="nav-link nav-item">Dodaj zwierzę</a>
                 <a href="/admin-panel/remove-animal" class="nav-link nav-item">Usuń zwierzę</a>
                 <a href="/admin-panel/add-barn" class="nav-link nav-item">Dodaj stodołę</a>
@@ -36,22 +37,23 @@
 </div>
 <div class="container">
     <div class="row">
-    <th:block th:if = "${avatarInfo} != null" th:switch="${avatarInfo}">
+        <th:block th:if="${avatarInfo} != null" th:switch="${avatarInfo}">
         <span th:case="${avatarInfo.INCORRECT_FORMAT}" th:text="#{Avatar.incorrect.format}"
               class="col-12 text-danger text-center"></span>
-        <span th:case="${avatarInfo.INCORRECT_SIZE}" th:text="#{Avatar.incorrect.size}"
-              class="col-12 text-danger text-center"></span>
-        <span th:case="${avatarInfo.CREATE_FILE_EXCEPTION}" th:text="#{Avatar.create.file.exception}"
-              class="col-12 text-danger text-center"></span>
-        <span th:case="${avatarInfo.CORRECT_AVATAR}" th:text="#{Avatar.correct.avatar}"
-              class="col-12 text-success text-center"></span>
-    </th:block>
+            <span th:case="${avatarInfo.INCORRECT_SIZE}" th:text="#{Avatar.incorrect.size}"
+                  class="col-12 text-danger text-center"></span>
+            <span th:case="${avatarInfo.CREATE_FILE_EXCEPTION}" th:text="#{Avatar.create.file.exception}"
+                  class="col-12 text-danger text-center"></span>
+            <span th:case="${avatarInfo.CORRECT_AVATAR}" th:text="#{Avatar.correct.avatar}"
+                  class="col-12 text-success text-center"></span>
+        </th:block>
     </div>
 
-    <img th:src="@{'/admin-panel/farmer-account/avatar/' + ${farmerId}}" class="col-6" style="height: 150px; width: 150px;">
+    <img th:src="@{'/admin-panel/farmer-account/avatar/' + ${farmerId}}" class="col-6"
+         style="height: 150px; width: 150px;">
 
     <form method="POST" enctype="multipart/form-data" th:action="@{'/admin-panel/farmer-account/avatar/' + ${farmerId}}"
-    class="col-4">
+          class="col-4">
 
         <div class="form-group">
             <label for="file">Wgraj swoje zdjęcie</label>
@@ -82,10 +84,6 @@
             <span th:text="${farmerData.getUsername()}"></span>
         </div>
     </div>
-</div>
-<div class="container">
-    <button class="btn btn-secondary my-5"><a href="/admin-panel" style="text-decoration: none; color:white">
-        Wróć do strony głównej</a></button>
 </div>
 </body>
 </html>

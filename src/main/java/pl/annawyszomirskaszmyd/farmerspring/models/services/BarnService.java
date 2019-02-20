@@ -8,6 +8,7 @@ import pl.annawyszomirskaszmyd.farmerspring.models.mappers.AddBarnFormToBarnEnti
 import pl.annawyszomirskaszmyd.farmerspring.models.repositories.BarnRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,5 +50,9 @@ public class BarnService {
 
     public boolean isBarnListEmpty() {
          return barnRepository.countBarns() == 0;
+    }
+
+    public List<String> getBarnNamesByFarmerId() {
+        return barnRepository.getBarnNamesByFarmerId(farmerSession.getUserEntity().getId());
     }
 }

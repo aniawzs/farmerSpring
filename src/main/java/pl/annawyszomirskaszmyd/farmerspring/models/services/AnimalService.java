@@ -14,10 +14,12 @@ import java.util.Optional;
 @Transactional
 public class AnimalService {
     final AnimalRepository animalRepository;
+    final FarmerSession farmerSession;
 
     @Autowired
-    public AnimalService(AnimalRepository animalRepository) {
+    public AnimalService(AnimalRepository animalRepository, FarmerSession farmerSession) {
         this.animalRepository = animalRepository;
+        this.farmerSession = farmerSession;
     }
 
     public void addAnimal(AddAnimalForm addAnimalForm){
@@ -29,30 +31,34 @@ public class AnimalService {
     }
 
     public List<String> returnFiveOldestAnimals(){
-        return animalRepository.returnFiveOldestAnimals();
+        return animalRepository.returnFiveOldestAnimals(farmerSession.getUserEntity().getId());
     }
     public List<String> returnFiveYoungestAnimals(){
-       return animalRepository.returnFiveYoungestAnimals();
+       return animalRepository.returnFiveYoungestAnimals(farmerSession.getUserEntity().getId());
     }
 
     public String returnMostNumberedAnimal() {
-        Optional<String> mostNumberedAnimal =  animalRepository.returnMostNumberedAnimal();
+        Optional<String> mostNumberedAnimal =
+                animalRepository.returnMostNumberedAnimal(farmerSession.getUserEntity().getId());
 
         return mostNumberedAnimal.orElse("Brak zwierząt na farmie!");
     }
 
     public List<String> returnAllVaccinatedAnimals(){
-        return animalRepository.returnAllVaccinatedAnimals();
+        return animalRepository.returnAllVaccinatedAnimals(farmerSession.getUserEntity().getId());
     }
-
-    public List<String> returnAllTypes(){
-        return animalRepository.returnAllTypes();
-    }
-
 
     public boolean existsByType(String type){
         return animalRepository.existsByType(type);
     }
 
+
+    public List<String> returnAllFarmerAnimals(){
+       return animalRepository.returnAllFarmerAnimals(farmerSession.getUserEntity().getId());
+    }
+
+    public boolean isFarmerAnimalListEmpty(){
+        return returnAllFarmerAnimals().isEmpty();
+    }
 
 }

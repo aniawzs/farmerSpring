@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.annawyszomirskaszmyd.farmerspring.models.forms.UpdateNameForm;
 import pl.annawyszomirskaszmyd.farmerspring.models.forms.UpdatePasswordForm;
 import pl.annawyszomirskaszmyd.farmerspring.models.forms.UpdateSurnameForm;
+import pl.annawyszomirskaszmyd.farmerspring.models.services.AnimalService;
+import pl.annawyszomirskaszmyd.farmerspring.models.services.BarnService;
 import pl.annawyszomirskaszmyd.farmerspring.models.services.FarmerService;
 
 import javax.validation.Valid;
@@ -17,10 +19,14 @@ import javax.validation.Valid;
 @Controller
 public class FarmerProfileController {
     final FarmerService farmerService;
+    final BarnService barnService;
+    final AnimalService animalService;
 
     @Autowired
-    public FarmerProfileController(FarmerService farmerService) {
+    public FarmerProfileController(FarmerService farmerService, BarnService barnService, AnimalService animalService) {
         this.farmerService = farmerService;
+        this.barnService = barnService;
+        this.animalService = animalService;
     }
 
     @GetMapping("/admin-panel/farmer-account")
@@ -98,5 +104,22 @@ public class FarmerProfileController {
         model.addAttribute("surnameChangeSuccessInfo", "Nazwisko zostało poprawnie zmienione");
         
         return "update_surname";
+    }
+
+    @GetMapping("/admin-panel/farmer-account/all-barns")
+    public String allFarmerBarns(Model model){
+        model.addAttribute("allFarmerBarns", barnService.getBarnNamesByFarmerId());
+        return "farmer_barns";
+    }
+
+    @GetMapping("/admin-panel/farmer-account/all-animals")
+    public String allFarmerAnimals(Model model){
+        if(animalService.isFarmerAnimalListEmpty()){
+            model.addAttribute("emptyAnimalList", "Nie masz jeszcze żadnych zwierząt na farmie");
+            return "farmer_all_animals";
+        }
+
+        model.addAttribute("allFarmerAnimals", animalService.returnAllFarmerAnimals());
+        return "farmer_all_animals";
     }
 }

@@ -2,10 +2,12 @@
 <html lang="en" xmlsn:th="http://www.thymeleaf.org"
       xmlns:th="http://www.w3.org/1999/xhtml" xmlns:xmlsn="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <title>Ustawienia profilu</title>
+    <title>Wszystkie stodoły</title>
 </head>
+<body>
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
@@ -20,27 +22,27 @@
                 <a href="/admin-panel/remove-barn" class="nav-link nav-item">Usuń stodołę</a>
                 <a href="/admin-panel/five-oldest-animals" class="nav-link nav-item">5 najstarszych zwierząt</a>
                 <a href="/admin-panel/five-youngest-animals" class="nav-link nav-item">5 najmłodszych zwierząt</a>
-                <a href="/admin-panel/most-numbered-barn" class="nav-link nav-item">Stodoła z największą ilością
-                    zwierząt</a>
+                <a href="/admin-panel/most-numbered-barn" class="nav-link nav-item">Stodoła z największą ilością zwierząt</a>
                 <a href="/admin-panel/most-numbered-animal" class="nav-link nav-item">Najliczniejsze zwierzę</a>
-                <a href="/admin-panel/all-vaccinated-animals" class="nav-link nav-item">Zaszczepione
-                    zwierzęta </a>
-                <a href="/admin-panel/farmer-account" class="nav-link nav-item active">Ustawienia konta</a>
+                <a href="/admin-panel/all-vaccinated-animals" class="nav-link nav-item">Zaszczepione zwierzęta </a>
+                <a href="/admin-panel/farmer-account" class="nav-link nav-item">Ustawienia konta</a>
             </div>
         </div>
     </div>
 </nav>
-<div class="jumbotron jumbotron-fluid bg-info text-center text-white">
-    <h4>Ustawienia konta</h4>
-</div>
 
-<div class="container">
-    <div class="col-12 text-center">
-        <button class="btn btn-info"><a href="/admin-panel/farmer-account/farmer-data" style="text-decoration: none; color:white">Twoje dane</a></button>
-        <button class="btn btn-info"><a href="/admin-panel/farmer-account/update-password" style="text-decoration: none; color:white">Zmień hasło</a></button>
+<div class="jumbotron jumbotron-fluid text-white text-center bg-info">
+    <div class="container">
+        <h4>Lista stodół</h4>
     </div>
 </div>
 
+<div class="container">
+    <div class="row">
+        <span th:each="barn : ${allFarmerBarns}" th:text="${barn}" class="col-md-12 text-center" style="font-size:20px"></span>
+    </div>
+
+</div>
 
 </body>
 </html>

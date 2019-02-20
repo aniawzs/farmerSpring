@@ -30,4 +30,7 @@ public interface BarnRepository extends CrudRepository<BarnEntity, Integer> {
 
     @Query(value="SELECT COUNT(`id`) FROM `barn`", nativeQuery = true)
     int countBarns();
+
+    @Query(value="SELECT `name` FROM `barn` WHERE `farmer_id`=?1", nativeQuery = true)
+    List<String> getBarnNamesByFarmerId(int id);
 }
