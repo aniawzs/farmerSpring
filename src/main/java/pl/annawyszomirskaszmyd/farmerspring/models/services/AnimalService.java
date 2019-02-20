@@ -27,7 +27,7 @@ public class AnimalService {
     }
 
     public void removeAnimal(String type){
-        animalRepository.deleteByType(type);
+        animalRepository.deleteByTypeAndFarmerId(type, farmerSession.getUserEntity().getId());
     }
 
     public List<String> returnFiveOldestAnimals(){
@@ -48,8 +48,8 @@ public class AnimalService {
         return animalRepository.returnAllVaccinatedAnimals(farmerSession.getUserEntity().getId());
     }
 
-    public boolean existsByType(String type){
-        return animalRepository.existsByType(type);
+    public boolean existsByTypeAndFarmerId(String type){
+        return !animalRepository.returnAnimalsByTypeAndFarmerId(type, farmerSession.getUserEntity().getId()).isEmpty();
     }
 
 

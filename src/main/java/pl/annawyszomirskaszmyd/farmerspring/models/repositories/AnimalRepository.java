@@ -1,5 +1,6 @@
 package pl.annawyszomirskaszmyd.farmerspring.models.repositories;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -11,26 +12,35 @@ import java.util.Optional;
 @Repository
 public interface AnimalRepository extends CrudRepository<AnimalEntity, Integer> {
 
-    boolean existsByType(String type);
+    @Query(value = "SELECT `type` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer`" +
+            " ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`=?2 AND `animal`.`type`=?1", nativeQuery = true)
+    List<String> returnAnimalsByTypeAndFarmerId(String type, int farmerId);
 
-    void deleteByType(String type);
+    @Modifying
+    @Query(value = "DELETE `animal` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer`" +
+            " ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`=?2 AND `animal`.`type`=?1", nativeQuery = true)
+    void deleteByTypeAndFarmerId(String type, int farmerId);
 
-    @Query(value="SELECT `type` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer` " +
+
+    @Query(value = "SELECT `type` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer` " +
             "ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`=?1 ORDER BY `age` DESC LIMIT 5",
             nativeQuery = true)
     List<String> returnFiveOldestAnimals(int farmerId);
+
 
     @Query(value = "SELECT `type` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer` " +
             "ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`=?1 ORDER BY `age` ASC LIMIT 5",
             nativeQuery = true)
     List<String> returnFiveYoungestAnimals(int farmerId);
 
+
     @Query(value = "SELECT `type` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer` " +
             "ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`=?1 ORDER BY COUNT(`type`) DESC LIMIT 1",
             nativeQuery = true)
     Optional<String> returnMostNumberedAnimal(int farmerId);
 
-    @Query(value="SELECT `type` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer` " +
+
+    @Query(value = "SELECT `type` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer` " +
             "ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`=?1 AND `is_vaccinated` = 1", nativeQuery = true)
     List<String> returnAllVaccinatedAnimals(int farmerId);
 

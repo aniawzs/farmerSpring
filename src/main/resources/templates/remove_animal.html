@@ -41,7 +41,11 @@
 
 <div class="container">
     <div class="row">
-        <h4 th:if="${removedAnimalInfo != null }" th:text="${removedAnimalInfo}" class="col-12 text-center text-success"></h4>
+        <h4 th:if="${noAnimalTypeError != null}" th:text="${noAnimalTypeError}" class="col-12 text-center text-danger">
+        </h4>
+
+        <h4 th:if="${removedAnimalInfo != null }" th:text="${removedAnimalInfo}" class="col-12 text-center text-success">
+        </h4>
 
         <form action="/admin-panel/remove-animal" method="post" th:object="${removeAnimalForm}" class="col-md-6 mx-auto">
             <div class="form-group">

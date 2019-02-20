@@ -61,7 +61,12 @@ public class AnimalController {
     @PostMapping("/admin-panel/remove-animal")
     public String removeAnimal(@ModelAttribute @Valid RemoveAnimalForm removeAnimalForm, BindingResult bindingResult,
                                Model model){
-        if(bindingResult.hasErrors() || !animalService.existsByType(removeAnimalForm.getType())){
+        if(bindingResult.hasErrors() ){
+            return "remove_animal";
+        }
+
+        if(!animalService.existsByTypeAndFarmerId(removeAnimalForm.getType())){
+            model.addAttribute("noAnimalTypeError", "Nie masz na farmie zwierząt o podanym typie!");
             return "remove_animal";
         }
 
