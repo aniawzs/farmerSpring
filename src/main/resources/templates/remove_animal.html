@@ -41,6 +41,7 @@
 
 <div class="container">
     <div class="row">
+        <h3 th:if="${emptyAnimalList} != null" th:text=${emptyAnimalList} class="col-12 text-danger text-center"></h3>
         <h4 th:if="${noAnimalTypeError != null}" th:text="${noAnimalTypeError}" class="col-12 text-center text-danger">
         </h4>
 

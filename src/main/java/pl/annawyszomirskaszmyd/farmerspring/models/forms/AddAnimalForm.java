@@ -1,6 +1,7 @@
 package pl.annawyszomirskaszmyd.farmerspring.models.forms;
 
 import lombok.Data;
+import pl.annawyszomirskaszmyd.farmerspring.validators.FarmerBarnsListValidator;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -20,6 +21,7 @@ public class AddAnimalForm{
 
     @NotNull
     @Min(1)
+    @FarmerBarnsListValidator
     private int barnId;
 
 }

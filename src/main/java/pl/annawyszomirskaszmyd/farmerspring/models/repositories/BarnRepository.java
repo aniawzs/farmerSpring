@@ -10,23 +10,21 @@ import java.util.Optional;
 @Repository
 public interface BarnRepository extends CrudRepository<BarnEntity, Integer> {
 
-    boolean existsByNameAndFarmerId(String name, int farnerId);
+    boolean existsByNameAndFarmerId(String name, int farmerId);
 
     boolean existsById(Integer id);
 
-    @Query(value = "SELECT `id` FROM `barn`", nativeQuery = true)
-    List<Integer> getAllBarnId();
-
-    @Query(value = "SELECT COUNT(`id`) FROM `barn`", nativeQuery = true)
-    int returnBarnCount();
-
     boolean existsByIdAndFarmerId(int barnId, int farmerId);
 
-    void removeByName(String barnName);
+//    void removeByNameAndFarmerId(String barnName, int farmerId);
 
-    @Query(value = "SELECT `name` FROM `barn` WHERE `id` IN(SELECT `barn_id` FROM `animal`" +
-            " GROUP BY `barn_id` ORDER BY COUNT(`barn_id`) DESC) LIMIT 1", nativeQuery = true)
-    Optional<String> returnMostNumberedBarn();
+    void deleteByNameAndFarmerId(String name, int farmerId);
+
+    @Query(value = "SELECT `barn`.`name` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer`" +
+            " ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`= ?1 AND " +
+            "`barn`.`id` IN(SELECT `barn_id` FROM `animal` GROUP BY `barn_id` ORDER BY COUNT(`barn_id`) DESC) LIMIT 1",
+            nativeQuery = true)
+    Optional<String> returnMostNumberedBarn(int farmerId);
 
     @Query(value="SELECT COUNT(`id`) FROM `barn`", nativeQuery = true)
     int countBarns();

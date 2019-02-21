@@ -55,6 +55,12 @@ public class AnimalController {
     public String removeAnimal(Model model){
         model.addAttribute("removeAnimalForm", new RemoveAnimalForm());
 
+        if(animalService.isFarmerAnimalListEmpty()){
+            model.addAttribute("emptyAnimalList", "Nie masz żadnych zwierząt na farmie!");
+
+            return "remove_animal";
+        }
+
         return "remove_animal";
     }
 

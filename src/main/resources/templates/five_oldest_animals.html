@@ -36,6 +36,7 @@
     <h4>5 najstarszych zwierząt</h4>
 </div>
 <div class="container">
+    <h3 th:if="${emptyAnimalList} != null" th:text=${emptyAnimalList} class="col-12 text-danger text-center"></h3>
     <div class="row">
         <span th:each="animal : ${oldestAnimals}" th:text="${animal}" class="col-12 text-center" style="font-size:20px"></span>
     </div>

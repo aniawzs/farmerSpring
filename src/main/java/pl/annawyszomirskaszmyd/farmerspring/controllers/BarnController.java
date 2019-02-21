@@ -51,15 +51,25 @@ public class BarnController {
 
     @GetMapping("/admin-panel/remove-barn")
     public String removeBarn(Model model){
-        model.addAttribute("removeBarnForm", new RemoveBarnForm());
+        if(barnService.isBarnListEmpty()){
+            model.addAttribute("barnListEmpty", "Nie masz jeszczez żadnych stodół na farmie");
 
+            return "remove_barn";
+        }
+
+        model.addAttribute("removeBarnForm", new RemoveBarnForm());
         return "remove_barn";
     }
 
     @PostMapping("/admin-panel/remove-barn")
     public String removeBarn(@ModelAttribute @Valid RemoveBarnForm removeBarnForm, BindingResult bindingResult,
                              Model model){
-        if(bindingResult.hasErrors() || !barnService.existsByNameAndFarmerId(removeBarnForm.getName())){
+        if(bindingResult.hasErrors()){
+            return "remove_barn";
+        }
+
+        if(!barnService.existsByNameAndFarmerId(removeBarnForm.getName())){
+            model.addAttribute("barnDoesNotExist", "Podana nazwa stodoły nie istnieje na farmie");
             return "remove_barn";
         }
 

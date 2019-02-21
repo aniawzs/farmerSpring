@@ -31,12 +31,12 @@ public class BarnService {
     }
 
     public void removeBarn(String barnName){
-        barnRepository.removeByName(barnName);
+        barnRepository.deleteByNameAndFarmerId(barnName, farmerSession.getUserEntity().getId());
     }
 
     public String returnMostNumberedBarn(){
-        Optional<String> mostNumberedBarn = barnRepository.returnMostNumberedBarn();
-        return mostNumberedBarn.orElse("Nie została dodana żadna stodoła!");
+        Optional<String> mostNumberedBarn = barnRepository.returnMostNumberedBarn(farmerSession.getUserEntity().getId());
+        return mostNumberedBarn.orElse("Nie została dodana jeszcze żadna stodoła lub nie posiadasz zwierząt na farmie!");
 
     }
 
@@ -55,4 +55,5 @@ public class BarnService {
     public List<String> getBarnNamesByFarmerId() {
         return barnRepository.getBarnNamesByFarmerId(farmerSession.getUserEntity().getId());
     }
+
 }
