@@ -43,7 +43,7 @@ public class FarmerProfileController {
 
     @GetMapping("/admin-panel/farmer-account/update-password")
     public String changeFarmerPassword(Model model){
-        model.addAttribute("changePasswordForm", new UpdatePasswordForm());
+        model.addAttribute("updatePasswordForm", new UpdatePasswordForm());
         return "farmer_update_password";
     }
 
