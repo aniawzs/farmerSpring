@@ -80,4 +80,8 @@ public class FarmerService {
     public int getFarmerId(){
         return farmerSession.getUserEntity().getId();
     }
+
+    public void logoutFarmer() {
+        farmerSession.setLogin(false);
+    }
 }
