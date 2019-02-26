@@ -21,9 +21,8 @@ public interface BarnRepository extends CrudRepository<BarnEntity, Integer> {
     void deleteByNameAndFarmerId(String name, int farmerId);
 
     @Query(value = "SELECT `barn`.`name` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer`" +
-            " ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`= ?1 AND " +
-            "`barn`.`id` IN(SELECT `barn_id` FROM `animal` GROUP BY `barn_id` ORDER BY COUNT(`barn_id`) DESC) LIMIT 1",
-            nativeQuery = true)
+            " ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`= ?1 GROUP BY `barn_id` " +
+            "ORDER BY COUNT(`barn_id`) DESC LIMIT 1", nativeQuery = true)
     Optional<String> returnMostNumberedBarn(int farmerId);
 
     @Query(value="SELECT COUNT(`id`) FROM `barn`", nativeQuery = true)

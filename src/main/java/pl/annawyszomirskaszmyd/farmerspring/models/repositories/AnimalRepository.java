@@ -35,8 +35,8 @@ public interface AnimalRepository extends CrudRepository<AnimalEntity, Integer> 
 
 
     @Query(value = "SELECT `type` FROM ((`animal` JOIN `barn` ON `animal`.`barn_id` = `barn`.`id` JOIN `farmer` " +
-            "ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`=?1 ORDER BY COUNT(`type`) DESC LIMIT 1",
-            nativeQuery = true)
+            "ON `barn`.`farmer_id` = `farmer`.`id`)) WHERE `farmer`.`id`=?1 GROUP BY `type` ORDER BY COUNT(`type`)" +
+            " DESC LIMIT 1", nativeQuery = true)
     Optional<String> returnMostNumberedAnimal(int farmerId);
 
 
