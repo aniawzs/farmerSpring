@@ -9,8 +9,8 @@ import pl.annawyszomirskaszmyd.farmerspring.models.services.BarnService;
 
 @Controller
 public class AdminPanelController {
-    final AnimalService animalService;
-    final BarnService barnService;
+    private final AnimalService animalService;
+    private final BarnService barnService;
 
     @Autowired
     public AdminPanelController(AnimalService animalService, BarnService barnService) {

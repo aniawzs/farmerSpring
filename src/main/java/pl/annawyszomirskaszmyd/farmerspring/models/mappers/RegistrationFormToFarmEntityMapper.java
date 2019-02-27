@@ -10,6 +10,7 @@ public class RegistrationFormToFarmEntityMapper implements Mapper <RegistrationF
         FarmerEntity farmerEntity = new FarmerEntity();
         farmerEntity.setName(registrationForm.getName());
         farmerEntity.setSurname(registrationForm.getSurname());
+        farmerEntity.setEmail(registrationForm.getEmail());
         farmerEntity.setUsername(registrationForm.getUsername());
         farmerEntity.setPassword(registrationForm.getPassword());
 

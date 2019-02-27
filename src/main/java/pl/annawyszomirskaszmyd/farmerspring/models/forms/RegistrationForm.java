@@ -12,6 +12,10 @@ public class RegistrationForm {
     @Pattern(regexp = "[A-Za-z]{3,30}")
     private String surname;
 
+
+    @Pattern(regexp="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\\\.[A-Za-z]{2,6}$")
+    private String email;
+
     @Pattern(regexp = "[A-Za-z0-9]{3,30}")
     private String username;
 

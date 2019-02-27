@@ -16,8 +16,8 @@ import javax.validation.Valid;
 
 @Controller
 public class AnimalController {
-    final AnimalService animalService;
-    final BarnService barnService;
+    private final AnimalService animalService;
+    private final BarnService barnService;
 
     @Autowired
     public AnimalController(AnimalService animalService, BarnService barnService) {

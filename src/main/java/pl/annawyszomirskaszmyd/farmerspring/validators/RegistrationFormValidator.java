@@ -21,6 +21,9 @@ public class RegistrationFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"surname",
                 "required.surname", "Podaj nazwisko");
 
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email",
+                "required.email", "Podaj nick");
+
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username",
                 "required.username", "Podaj nick");
 

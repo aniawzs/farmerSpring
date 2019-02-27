@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 @Controller
 public class LoginController {
-    final FarmerService farmerService;
+    private final FarmerService farmerService;
 
     @Autowired
     public LoginController(FarmerService farmerService) {

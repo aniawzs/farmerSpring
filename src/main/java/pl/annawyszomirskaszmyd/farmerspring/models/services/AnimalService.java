@@ -13,8 +13,8 @@ import java.util.Optional;
 @Service
 @Transactional
 public class AnimalService {
-    final AnimalRepository animalRepository;
-    final FarmerSession farmerSession;
+    private final AnimalRepository animalRepository;
+    private final FarmerSession farmerSession;
 
     @Autowired
     public AnimalService(AnimalRepository animalRepository, FarmerSession farmerSession) {

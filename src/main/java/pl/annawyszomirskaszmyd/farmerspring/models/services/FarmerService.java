@@ -2,6 +2,7 @@ package pl.annawyszomirskaszmyd.farmerspring.models.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.annawyszomirskaszmyd.farmerspring.models.entities.ConfirmationTokenEntity;
 import pl.annawyszomirskaszmyd.farmerspring.models.forms.*;
 import pl.annawyszomirskaszmyd.farmerspring.models.entities.FarmerEntity;
 import pl.annawyszomirskaszmyd.farmerspring.models.mappers.RegistrationFormToFarmEntityMapper;
@@ -13,25 +14,38 @@ import java.util.Optional;
 @Service
 @Transactional
 public class FarmerService {
-    final FarmerRepository farmerRepository;
-    final FarmerHash farmerHash;
-    final FarmerSession farmerSession;
+    private final FarmerRepository farmerRepository;
+    private final FarmerHash farmerHash;
+    private final FarmerSession farmerSession;
+    private final ConfirmationTokenService confirmationTokenService;
+    private final EmailSenderService emailSenderService;
 
     @Autowired
-    public FarmerService(FarmerRepository farmerRepository, FarmerHash farmerHash, FarmerSession farmerSession) {
+    public FarmerService(FarmerRepository farmerRepository, FarmerHash farmerHash, FarmerSession farmerSession,
+                         ConfirmationTokenService confirmationTokenService, EmailSenderService emailSenderService) {
         this.farmerRepository = farmerRepository;
         this.farmerHash = farmerHash;
         this.farmerSession = farmerSession;
+        this.confirmationTokenService = confirmationTokenService;
+        this.emailSenderService = emailSenderService;
     }
 
     public boolean addFarmer(RegistrationForm registrationForm) {
-
         if (isUserNameFree(registrationForm.getUsername())) {
             return false;
         }
 
         registrationForm.setPassword(farmerHash.hashPassword(registrationForm.getPassword()));
-        farmerRepository.save(new RegistrationFormToFarmEntityMapper().map(registrationForm));
+
+        FarmerEntity farmerEntity = new RegistrationFormToFarmEntityMapper().map(registrationForm);
+
+        farmerRepository.save(farmerEntity);
+
+        ConfirmationTokenEntity confirmationTokenEntity = new ConfirmationTokenEntity(farmerEntity);
+        confirmationTokenService.addConfirmationToken(confirmationTokenEntity);
+
+        emailSenderService.sendEmail(registrationForm.getEmail(), confirmationTokenEntity);
+
         return true;
     }
 

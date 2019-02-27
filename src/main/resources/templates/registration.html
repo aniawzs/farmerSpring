@@ -41,6 +41,13 @@
             </div>
 
             <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control">
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                      class="form-text text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label for="username">Nick</label>
                 <input type="text" id="username" th:field="*{username}" class="form-control">
                 <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"

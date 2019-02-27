@@ -14,8 +14,8 @@ import java.util.Optional;
 @Service
 @Transactional
 public class BarnService {
-    final BarnRepository barnRepository;
-    final FarmerSession farmerSession;
+    private final BarnRepository barnRepository;
+    private final FarmerSession farmerSession;
 
     @Autowired
     public BarnService(BarnRepository barnRepository, FarmerSession farmerSession) {

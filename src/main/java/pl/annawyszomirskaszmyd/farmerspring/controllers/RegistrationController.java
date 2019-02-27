@@ -16,8 +16,8 @@ import javax.validation.Valid;
 
 @Controller
 public class RegistrationController {
-    final RegistrationFormValidator registrationFormValidator;
-    final FarmerService farmerService;
+    private final RegistrationFormValidator registrationFormValidator;
+    private final FarmerService farmerService;
 
     @Autowired
     public RegistrationController(RegistrationFormValidator registrationFormValidator, FarmerService farmerService) {

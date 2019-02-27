@@ -8,7 +8,7 @@ import pl.annawyszomirskaszmyd.farmerspring.models.services.FarmerService;
 
 @Controller
 public class LogoutController {
-    final FarmerService farmerService;
+    private final FarmerService farmerService;
 
     @Autowired
     public LogoutController(FarmerService farmerService) {

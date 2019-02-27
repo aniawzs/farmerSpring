@@ -13,7 +13,7 @@ import java.nio.file.StandardOpenOption;
 
 @Service
 public class FarmerAvatarService {
-    final FarmerSession farmerSession;
+    private final FarmerSession farmerSession;
     private static final String PATH_TO_AVATARS = "avatars";
 
     public enum UploadingAvatarResponse {
@@ -25,14 +25,14 @@ public class FarmerAvatarService {
         this.farmerSession = farmerSession;
     }
 
-    public UploadingAvatarResponse uploadAvatar(MultipartFile avatar, int id){
+    public UploadingAvatarResponse uploadAvatar(MultipartFile avatar, int id) {
         id = farmerSession.getUserEntity().getId();
 
-        if(!checkFileFormat(avatar)){
+        if (!checkFileFormat(avatar)) {
             return UploadingAvatarResponse.INCORRECT_FORMAT;
         }
 
-        if(!checkFileSize(avatar)){
+        if (!checkFileSize(avatar)) {
             return UploadingAvatarResponse.INCORRECT_SIZE;
         }
 
@@ -56,7 +56,7 @@ public class FarmerAvatarService {
     private void createFileIfNotExists(Path pathToAvatar) throws IOException {
         File file = pathToAvatar.toFile();
 
-        if(!file.exists()){
+        if (!file.exists()) {
             file.createNewFile();
         }
     }

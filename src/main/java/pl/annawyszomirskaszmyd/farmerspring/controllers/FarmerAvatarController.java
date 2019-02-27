@@ -11,7 +11,7 @@ import pl.annawyszomirskaszmyd.farmerspring.models.services.FarmerAvatarService;
 
 @Controller
 public class FarmerAvatarController {
-    final FarmerAvatarService farmerAvatarService;
+    private final FarmerAvatarService farmerAvatarService;
 
     @Autowired
     public FarmerAvatarController(FarmerAvatarService farmerAvatarService) {

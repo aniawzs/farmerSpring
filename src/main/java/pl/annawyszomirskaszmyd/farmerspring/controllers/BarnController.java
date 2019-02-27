@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 @Controller
 public class BarnController {
-    final BarnService barnService;
+    private final BarnService barnService;
 
     @Autowired
     public BarnController(BarnService barnService) {
