@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.annawyszomirskaszmyd.farmerspring.models.entities.ConfirmationTokenEntity;
 import pl.annawyszomirskaszmyd.farmerspring.models.repositories.ConfirmationTokenRepository;
 
+import java.util.Optional;
+
 @Service
 public class ConfirmationTokenService {
 
@@ -17,5 +19,16 @@ public class ConfirmationTokenService {
 
     public void addConfirmationToken(ConfirmationTokenEntity confirmationToken){
         confirmationTokenRepository.save(confirmationToken);
+    }
+
+    public ConfirmationTokenEntity findByConfirmationToken(String confirmationToken) {
+        Optional<ConfirmationTokenEntity> confirmationTokenEntity =
+                confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+
+        return confirmationTokenEntity.orElse(null);
+    }
+
+    public void deleteByFarmerId(int farmerId){
+        confirmationTokenRepository.deleteByFarmerId(farmerId);
     }
 }

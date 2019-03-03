@@ -41,10 +41,7 @@ public class FarmerService {
 
         farmerRepository.save(farmerEntity);
 
-        ConfirmationTokenEntity confirmationTokenEntity = new ConfirmationTokenEntity(farmerEntity);
-        confirmationTokenService.addConfirmationToken(confirmationTokenEntity);
-
-        emailSenderService.sendEmail(registrationForm.getEmail(), confirmationTokenEntity);
+        sendEmailToNewRegisteredFarmer(registrationForm, farmerEntity);
 
         return true;
     }
@@ -97,5 +94,32 @@ public class FarmerService {
 
     public void logoutFarmer() {
         farmerSession.setLogin(false);
+    }
+
+    public FarmerEntity findById(int farmerId) {
+        return farmerRepository.findById(farmerId);
+    }
+
+    public void updateFarmer(FarmerEntity farmerEntity){
+        farmerRepository.save(farmerEntity);
+    }
+
+    private void sendEmailToNewRegisteredFarmer(RegistrationForm registrationForm, FarmerEntity farmerEntity) {
+        ConfirmationTokenEntity confirmationTokenEntity = new ConfirmationTokenEntity(farmerEntity);
+        confirmationTokenService.addConfirmationToken(confirmationTokenEntity);
+
+        emailSenderService.sendEmail(registrationForm.getEmail(), confirmationTokenEntity);
+    }
+
+    public void sendEmailWhileTokenIsExpired(FarmerEntity farmerEntity){
+        ConfirmationTokenEntity confirmationTokenEntity = new ConfirmationTokenEntity(farmerEntity);
+        deleteExpiredToken(farmerEntity);
+        confirmationTokenService.addConfirmationToken(confirmationTokenEntity);
+
+        emailSenderService.sendEmail(farmerEntity.getEmail(), confirmationTokenEntity);
+    }
+
+    private void deleteExpiredToken(FarmerEntity farmerEntity){
+        confirmationTokenService.deleteByFarmerId(farmerEntity.getId());
     }
 }

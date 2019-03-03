@@ -27,13 +27,6 @@
             <h3 th:if="${animalAddedInfo != null}" th:text="${animalAddedInfo}" class="col-12 text-center text-success"></h3>
             <div class="form-group">
                 <label for="type">Typ zwierzęcia</label>
-                <!--<select id="type" th:field="*{type}" class="form-control">-->
-                <!--<option value="" disabled selected></option>-->
-                <!--<option th:each="animal : ${T(pl.annawyszomirskaszmyd.farmerspring.models.forms.AddAnimalForm.AnimalType).values()}"-->
-                <!--th:value="${animal}"-->
-                <!--th:text="${animal}">-->
-                <!--</option>-->
-                <!--</select>-->
                 <input type="text" id="type" th:field="*{type}" class="form-control">
                 <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="form-text text-danger"></span>
             </div>
@@ -47,13 +40,6 @@
 
             <div class="form-group">
                 <label for="vaccinated">Czy zwierzę jest szczepione?</label>
-                <!--<select id="vaccinated" th:field="*{isVaccinated}" class="form-control">-->
-                    <!--<option value="" disabled selected></option>-->
-                    <!--<option th:each="boolean: ${isVaccinatedOptions}"-->
-                            <!--th:value="${boolean}"-->
-                            <!--th:text="${boolean}">-->
-                    <!--</option>-->
-                <!--</select>-->
                 <input type="text" id="vaccinated" th:field="*{isVaccinated}" class="form-control">
                 <span th:errors="*{isVaccinated}" class="form-text text-danger"></span>
             </div>

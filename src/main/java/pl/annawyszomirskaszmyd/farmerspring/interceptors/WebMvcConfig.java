@@ -16,7 +16,7 @@ import java.util.List;
 public class WebMvcConfig extends HandlerInterceptorAdapter implements WebMvcConfigurer {
 
     private final FarmerSession farmerSession;
-    private static final List<String> allowedUrls = Arrays.asList("/registration", "/index", "/login", "/confirm-account?token=");
+    private static final List<String> allowedUrls = Arrays.asList("/registration", "/index", "/login", "/confirm");
 
     @Autowired
     public WebMvcConfig(FarmerSession farmerSession) {

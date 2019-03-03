@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlsn:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:xmlsn="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Potwierdź konto</title>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid text-white text-center bg-info">
+    <div class="container">
+        <h4>Potwierdzenie konta</h4>
+    </div>
+</div>
+<h4 th:if="${invalidToken} != null" th:text="${invalidToken}" class="text-danger text-center"></h4>
+<h4 th:if="${expiredToken} != null" th:text="${expiredToken}" class="text-danger text-center"></h4>
+
+<div th:if="${confirmAccountMessage !=null}" class="col-6 text-center mx-auto">
+    <h4 th:text="${confirmAccountMessage}" class="text-success text-center"></h4>
+    <a href="/login" style="color:forestgreen; font-size: 20px">Zaloguj się do swojej farmy</a>
+</div>
+
+</body>
+</html>

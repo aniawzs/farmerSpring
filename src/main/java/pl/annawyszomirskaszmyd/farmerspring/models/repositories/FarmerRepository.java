@@ -13,6 +13,8 @@ public interface FarmerRepository extends CrudRepository<FarmerEntity, Integer> 
 
     boolean existsByUsername(String username);
 
+    FarmerEntity findById(int id);
+
     @Query(value = "SELECT * FROM `farmer` WHERE `username` = ?1", nativeQuery = true)
     Optional<FarmerEntity> getFarmerByUsername(String username);
 
