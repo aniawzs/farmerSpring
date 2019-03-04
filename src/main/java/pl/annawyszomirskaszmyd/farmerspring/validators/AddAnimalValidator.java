@@ -1,8 +1,8 @@
 package pl.annawyszomirskaszmyd.farmerspring.validators;
 
 import org.springframework.stereotype.Component;
-import pl.annawyszomirskaszmyd.farmerspring.models.repositories.BarnRepository;
-import pl.annawyszomirskaszmyd.farmerspring.models.services.FarmerSession;
+import pl.annawyszomirskaszmyd.farmerspring.admin.panel.models.repositories.BarnRepository;
+import pl.annawyszomirskaszmyd.farmerspring.farmer.models.services.FarmerSession;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

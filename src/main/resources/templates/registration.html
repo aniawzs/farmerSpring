@@ -25,7 +25,7 @@
     <div class="row">
         <h5 class="col-12 text-danger my-2 text-center" th:if="${usernameError!= null}" th:text="${usernameError}"></h5>
 
-        <form action="/registration" method="post" th:object="${registrationForm}" class="col-md-6 mx-auto">
+        <form action="/pl/annawyszomirskaszmyd/farmerspring/farmer" method="post" th:object="${registrationForm}" class="col-md-6 mx-auto">
             <div class="form-group">
                 <label for="name">Imię</label>
                 <input type="text" id="name" th:field="*{name}" class="form-control">

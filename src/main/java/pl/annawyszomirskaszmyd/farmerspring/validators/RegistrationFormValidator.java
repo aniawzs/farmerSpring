@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import pl.annawyszomirskaszmyd.farmerspring.models.forms.RegistrationForm;
+import pl.annawyszomirskaszmyd.farmerspring.farmer.models.forms.RegistrationForm;
 
 @Component
 public class RegistrationFormValidator implements Validator {

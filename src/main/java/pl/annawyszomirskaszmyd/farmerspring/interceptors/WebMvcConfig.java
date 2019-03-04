@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import pl.annawyszomirskaszmyd.farmerspring.models.services.FarmerSession;
+import pl.annawyszomirskaszmyd.farmerspring.farmer.models.services.FarmerSession;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +16,7 @@ import java.util.List;
 public class WebMvcConfig extends HandlerInterceptorAdapter implements WebMvcConfigurer {
 
     private final FarmerSession farmerSession;
-    private static final List<String> allowedUrls = Arrays.asList("/registration", "/index", "/login", "/confirm");
+    private static final List<String> allowedUrls = Arrays.asList("/pl/annawyszomirskaszmyd/farmerspring/farmer", "/index", "/login", "/confirm");
 
     @Autowired
     public WebMvcConfig(FarmerSession farmerSession) {
