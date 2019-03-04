@@ -52,7 +52,9 @@ public class RegistrationController {
         }
 
         if (farmerService.addFarmer(registrationForm)) {
-            return "redirect:/login";
+            model.addAttribute("registrationCorrect", "Aby dokończyć proces rejestracji kliknij w link " +
+                    "przesłany w mailu");
+            return "registration";
         }
 
         model.addAttribute("usernameError", "Taki nick został już użyty. Zmień nick aby się zarejestrować!");

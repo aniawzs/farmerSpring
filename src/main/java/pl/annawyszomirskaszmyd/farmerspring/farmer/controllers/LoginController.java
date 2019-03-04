@@ -30,16 +30,17 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute @Valid LoginForm loginForm, BindingResult bindingResult, Model model){
+        FarmerService.LoginResponse loginResponse = farmerService.loginResponse(loginForm);
 
         if(bindingResult.hasErrors()){
             return "login";
         }
 
-        if(farmerService.isLoginCorrect(loginForm)){
+        if(loginResponse == FarmerService.LoginResponse.LOGIN_SUCCESSFUL){
             return "redirect:/admin-panel";
         }
 
-        model.addAttribute("incorrectLoginCredentials", "Niepawidłowy username lub hasło. Spróbuj ponownie!");
+        model.addAttribute("incorrectLogin", loginResponse);
         return "login";
     }
 }

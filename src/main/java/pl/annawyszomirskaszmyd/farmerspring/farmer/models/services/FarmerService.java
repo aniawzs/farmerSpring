@@ -30,6 +30,10 @@ public class FarmerService {
         this.emailSenderService = emailSenderService;
     }
 
+    public enum LoginResponse {
+       INCORRECT_CREDENTIALS, ACCOUNT_NOT_ACTIVATED, LOGIN_SUCCESSFUL
+    }
+
     public boolean addFarmer(RegistrationForm registrationForm) {
         if (isUserNameFree(registrationForm.getUsername())) {
             return false;
@@ -50,19 +54,23 @@ public class FarmerService {
         return farmerRepository.existsByUsername(nickName);
     }
 
-    public boolean isLoginCorrect(LoginForm loginForm) {
+    public LoginResponse loginResponse(LoginForm loginForm) {
         Optional<FarmerEntity> farmerWithTryToLogin = farmerRepository.getFarmerByUsername(loginForm.getUsername());
 
         if (farmerWithTryToLogin.isPresent() && farmerHash.isPasswordCorrect(loginForm.getPassword(),
                 farmerWithTryToLogin.get().getPassword())) {
 
+            if(!farmerWithTryToLogin.get().isEnabled()) {
+                return LoginResponse.ACCOUNT_NOT_ACTIVATED;
+            }
+
             farmerSession.setLogin(true);
             farmerSession.setUserEntity(farmerWithTryToLogin.get());
+            return LoginResponse.LOGIN_SUCCESSFUL;
 
-            return true;
         }
 
-        return false;
+        return LoginResponse.INCORRECT_CREDENTIALS;
     }
 
     public boolean changeFarmerPassword(UpdatePasswordForm changePasswordForm){

@@ -15,19 +15,19 @@
 <div class="container">
     <div class="row">
         <th:block th:if="${avatarInfo} != null" th:switch="${avatarInfo}">
-        <span th:case="${avatarInfo.INCORRECT_FORMAT}" th:text="#{Avatar.incorrect.format}"
-              class="col-12 text-danger text-center"></span>
-            <span th:case="${avatarInfo.INCORRECT_SIZE}" th:text="#{Avatar.incorrect.size}"
-                  class="col-12 text-danger text-center"></span>
-            <span th:case="${avatarInfo.CREATE_FILE_EXCEPTION}" th:text="#{Avatar.create.file.exception}"
-                  class="col-12 text-danger text-center"></span>
-            <span th:case="${avatarInfo.CORRECT_AVATAR}" th:text="#{Avatar.correct.avatar}"
-                  class="col-12 text-success text-center"></span>
+            <h4 th:case="${avatarInfo.INCORRECT_FORMAT}" th:text="#{Avatar.incorrect.format}"
+                class="col-12 text-danger text-center"></h4>
+            <h4 th:case="${avatarInfo.INCORRECT_SIZE}" th:text="#{Avatar.incorrect.size}"
+                class="col-12 text-danger text-center"></h4>
+            <h4 th:case="${avatarInfo.CREATE_FILE_EXCEPTION}" th:text="#{Avatar.create.file.exception}"
+                class="col-12 text-danger text-center"></h4>
+            <h4 th:case="${avatarInfo.CORRECT_AVATAR}" th:text="#{Avatar.correct.avatar}"
+                class="col-12 text-success text-center"></h4>
         </th:block>
     </div>
 
     <img th:src="@{'/avatar/' + ${farmerId}}" class="col-6"
-         style="height: 150px; width: 150px;">
+         style="height: 200px; width: 250px;">
 
     <form method="POST" enctype="multipart/form-data" th:action="@{'/admin-panel/farmer-account/avatar/' + ${farmerId}}"
           class="col-4">
